@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PowerEye View — Sign In</title>
+<link rel="icon" type="image/jpg" href="/assets/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Syne:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style/login.css">
+</head>
+<body>
+
+
+  <!-- NAV -->
+<nav>
+  <a href="/html/index.html" class="nav-brand">
+    <div class="nav-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#00c8ff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+      </svg>
+    </div>
+    <span class="nav-name">PowerEye</span>
+  </a>
+
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <div class="nav-btns">
+    <!-- <a href="login.html" class="btn-outline">Sign In</a> -->
+    <a href="signup.html" class="btn-solid">Sign up</a>
+  </div>
+
+  <!-- HAMBURGER (mobile only) -->
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU DRAWER -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMenu()">Home</a>
+  <a href="about.html" onclick="closeMenu()">About</a>
+  <a href="contact.html" onclick="closeMenu()">Contact</a>
+  <div class="mobile-menu-btns">
+    <!-- <a href="login.html" class="btn-outline">Sign In</a> -->
+    <a href="signup.html" class="btn-solid">Sign up</a>
+  </div>
+</div>
+
+
+
+<!-- LEFT BRAND PANEL -->
+<div class="left">
+  <div class="left-glow"></div>
+  <div class="left-content">
+    <div class="brand-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#00c8ff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+      </svg>
+    </div>
+    <div class="brand-name">Power<span>Eye</span><br>view</div>
+    <div class="brand-tagline">Electricity Pole Voltage System</div>
+
+    <div class="features">
+      <div class="feat">
+        <div class="feat-dot"></div>
+        <div class="feat-text">
+          <strong>Real-Time Voltage Monitoring</strong>
+          <span>Live readings from all grid nodes</span>
+        </div>
+      </div>
+      <div class="feat">
+        <div class="feat-dot"></div>
+        <div class="feat-text">
+          <strong>Instant Fault Detection</strong>
+          <span>Auto-alerts on abnormal voltage spikes</span>
+        </div>
+      </div>
+      <div class="feat">
+        <div class="feat-dot"></div>
+        <div class="feat-text">
+          <strong>Secure Employee Access</strong>
+          <span>Role-based access for field engineers</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="left-bottom">© 2026 VoltGrid Monitor. All rights reserved.</div>
+</div>
+
+<!-- RIGHT FORM PANEL -->
+<div class="right">
+  <div class="form-box">
+    <div class="form-header">
+      <div class="form-title">SIGN IN</div>
+      <div class="form-sub">Access your grid dashboard</div>
+    </div>
+
+    <div id="msg" class="msg"></div>
+
+    <!-- <div class="field">
+      <label class="field-label">Email Address</label>
+      <div class="input-wrap">
+        <svg class="i-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <polyline points="2,4 12,13 22,4"/>
+        </svg>
+        <input type="email" id="email" placeholder="you@company.com" autocomplete="email">
+      </div>
+    </div> -->
+
+    <div class="field">
+      <label class="field-label">Employee ID</label>
+      <div class="input-wrap">
+        <svg class="i-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="16" rx="2"/>
+          <circle cx="12" cy="10" r="3"/>
+          <path d="M6 20v-1a6 6 0 0 1 12 0v1"/>
+        </svg>
+        <input type="text" id="empid" placeholder="EMP-00000" autocomplete="username">
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="field-label">Password</label>
+      <div class="input-wrap">
+        <svg class="i-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+        <input type="password" id="pass" placeholder="••••••••" autocomplete="current-password">
+        <button class="eye-btn" onclick="toggleEye('pass',this)" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <a href="/html/home.html" style="text-decoration:none;">
+      <button class="btn-submit" onclick="handleLogin()">SIGN IN</button>
+    </a>
+
+    <div class="divider">OR</div>
+
+    <div class="signup-link">
+      Don't have an account? <a href="signup.html">Create Account</a>
+    </div>
+  </div>
+</div>
+
+<script src="/Javascript/login.js"></script>
+</body>
+</html>
