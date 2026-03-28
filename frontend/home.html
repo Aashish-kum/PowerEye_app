@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PowerEye – Pole Monitoring</title>
+  <link rel="icon" type="image/jpg" href="/assets/favicon.png">
+  <!-- <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"> -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Syne:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style/home.css">
+</head>
+<body>
+
+  <!-- PROGRESS BAR -->
+  <div id="progressBar"></div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast">
+    <div class="toast-dot"></div>
+    <span>Data refreshed</span>
+    <span class="toast-time" id="toastTime"></span>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       NAVIGATION
+       ══════════════════════════════════════ -->
+  <nav>
+    <div class="nav-left">
+      <div class="nav-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#00c8ff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+        </svg>
+      </div>
+      <div class="nav-title">PowerEye</div>
+      <div class="nav-divider"></div>
+      <div class="nav-subtitle" id="employee-id"></div>
+    </div>
+
+    <div class="nav-right">
+      <div class="live-badge">
+        <div class="live-dot"></div>
+        <span>LIVE</span>
+      </div>
+      <div class="clock" id="clock">--:--:--</div>
+      
+      <div class="nav-buttons">
+        <!-- REFRESH BUTTON -->
+        <button 
+          id="refreshBtn" 
+          class="btn-nav" 
+          onclick="refreshData()"
+          title="Refresh data"
+          aria-label="Refresh data"
+        >
+          <svg class="refresh-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 4 23 10 17 10"></polyline>
+            <polyline points="1 20 1 14 7 14"></polyline>
+            <path d="M3.51 9a9 9 0 0 1 14.85-3.36M20.49 15a9 9 0 0 1-14.85 3.36"></path>
+          </svg>
+          <span>Refresh</span>
+        </button>
+
+        <!-- LOGOUT BUTTON -->
+        <button 
+          id="logoutBtn" 
+          class="btn-nav" 
+          onclick="logout()"
+          title="Logout"
+          aria-label="Logout"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <polyline points="16 17 21 12 16 7"></polyline>
+            <line x1="21" y1="12" x2="9" y2="12"></line>
+          </svg>
+          <span>Logout</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════
+       MAIN CONTENT
+       ══════════════════════════════════════ -->
+  <main>
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+      <h1 class="page-title">Pole Monitoring</h1>
+      <p class="page-subtitle">8 poles registered</p>
+    </div>
+
+    <!-- FILTER BUTTONS -->
+    <div class="filter-bar" role="group" aria-label="Filter poles by status">
+      <button 
+        class="filter-btn f-all active" 
+        onclick="setFilter('all', this)"
+        aria-pressed="true"
+      >
+        All <span class="filter-count" id="fc-all">0</span>
+      </button>
+      <button 
+        class="filter-btn f-active" 
+        onclick="setFilter('active', this)"
+        aria-pressed="false"
+      >
+        <span style="width:7px;height:7px;border-radius:50%;background:var(--accent-green);display:inline-block;"></span>
+        Active <span class="filter-count" id="fc-active">0</span>
+      </button>
+      <button 
+        class="filter-btn f-warn" 
+        onclick="setFilter('warning', this)"
+        aria-pressed="false"
+      >
+        <span style="width:7px;height:7px;border-radius:50%;background:var(--accent-orange);display:inline-block;"></span>
+        Warning <span class="filter-count" id="fc-warn">0</span>
+      </button>
+      <button 
+        class="filter-btn f-fault" 
+        onclick="setFilter('error', this)"
+        aria-pressed="false"
+      >
+        <span style="width:7px;height:7px;border-radius:50%;background:var(--accent-red);display:inline-block;"></span>
+        Fault <span class="filter-count" id="fc-fault">0</span>
+      </button>
+    </div>
+
+    <!-- SEARCH BOX -->
+    <div class="search-box">
+      <input 
+        type="text" 
+        id="searchInput" 
+        placeholder="Search pole (ID, location, status)..."
+        onkeyup="filterPoles()"
+        aria-label="Search poles"
+      />
+    </div>
+
+    <!-- POLE LIST -->
+    <div class="pole-list" id="poleList" role="main" aria-live="polite" aria-label="List of poles">
+      <!-- Poles will be rendered here by JavaScript -->
+    </div>
+  </main>
+
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+  <script src="/Javascript/home.js"></script>
+</body>
+</html>
