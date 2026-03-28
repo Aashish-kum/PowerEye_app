@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logout - VoltGrid</title>
+  <link rel="icon" type="image/jpg" href="/assets/favicon.png">
+  <link rel="stylesheet" href="/frontend/style/logout.css">
+  
+</head>
+<body>
+
+<div class="logout-container" id="logoutContainer">
+  <!-- Header -->
+  <div class="logout-header">
+    <div class="logout-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+        <polyline points="16 17 21 12 16 7"></polyline>
+        <line x1="21" y1="12" x2="9" y2="12"></line>
+      </svg>
+    </div>
+    <h1 class="logout-title">Logout</h1>
+    <p class="logout-subtitle">Are you sure you want to logout?</p>
+  </div>
+
+  <!-- Status Messages -->
+  <div class="logout-message" id="logoutMessage">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+    You have been successfully logged out
+  </div>
+
+  <!-- Status Tracking -->
+  <div class="logout-status" id="logoutStatus">
+    <div class="status-item">
+      <div class="status-check pending" id="statusSession">⋯</div>
+      <div class="status-text">Clearing session data...</div>
+    </div>
+    <div class="status-item">
+      <div class="status-check pending" id="statusTokens">⋯</div>
+      <div class="status-text">Removing authentication tokens...</div>
+    </div>
+    <div class="status-item">
+      <div class="status-check pending" id="statusCache">⋯</div>
+      <div class="status-text">Clearing cache...</div>
+    </div>
+    <div class="status-item">
+      <div class="status-check pending" id="statusRedirect">⋯</div>
+      <div class="status-text">Redirecting to login...</div>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="logout-buttons" id="logoutButtons">
+    <button class="btn btn-logout" id="confirmLogoutBtn" onclick="confirmLogout()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+        <polyline points="16 17 21 12 16 7"></polyline>
+        <line x1="21" y1="12" x2="9" y2="12"></line>
+      </svg>
+      <span>Logout</span>
+    </button>
+    <button class="btn btn-cancel" id="cancelBtn" onclick="cancelLogout()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+      <span>Cancel</span>
+    </button>
+  </div>
+
+  <!-- Login Button (hidden until logout completes) -->
+  <a href="/frontend/login.html" class="btn btn-login hidden" id="loginBtn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+      <polyline points="10 17 15 12 10 7"></polyline>
+      <line x1="15" y1="12" x2="3" y2="12"></line>
+    </svg>
+    <span>Back to Login</span>
+  </a>
+
+  <!-- Footer -->
+  <div class="logout-footer">
+    <p>If you didn't mean to logout, click Cancel</p>
+  </div>
+</div>
+
+<script src="/frontend/js/logout.js"></script>
+
+</body>
+</html>

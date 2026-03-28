@@ -20,8 +20,8 @@
     <span class="toast-time" id="toastTime"></span>
   </div>
 
-  <!-- ══════════════════════════════════════
-       NAVIGATION
+ <!-- ══════════════════════════════════════
+       NAVIGATION WITH ADD POLE BUTTON
        ══════════════════════════════════════ -->
   <nav>
     <div class="nav-left">
@@ -43,6 +43,15 @@
       <div class="clock" id="clock">--:--:--</div>
       
       <div class="nav-buttons">
+        <!-- ADD POLE BUTTON -->
+        <a href="/frontend/add_pole.html" class="btn-nav btn-add-pole" title="Add new pole">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          <span>Add Pole</span>
+        </a>
+
         <!-- REFRESH BUTTON -->
         <button 
           id="refreshBtn" 
@@ -77,7 +86,6 @@
       </div>
     </div>
   </nav>
-
 
   <!-- ══════════════════════════════════════
        MAIN CONTENT

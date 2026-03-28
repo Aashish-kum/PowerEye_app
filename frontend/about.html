@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PowerEye Monitor — About</title>
+<link rel="icon" type="image/jpg" href="/assets/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Syne:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/frontend/style/about.css">
+
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-orb bg-orb1"></div>
+<div class="bg-orb bg-orb2"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="/html/index.html" class="nav-brand">
+    <div class="nav-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#00c8ff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+      </svg>
+    </div>
+    <span class="nav-name">PowerEye</span>
+  </a>
+
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <div class="nav-btns">
+    <a href="login.html" class="btn-outline">Sign In</a>
+    <a href="signup.html" class="btn-solid">Sign up</a>
+  </div>
+
+  <!-- HAMBURGER (mobile only) -->
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU DRAWER -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMenu()">Home</a>
+  <a href="about.html" onclick="closeMenu()">About</a>
+  <a href="contact.html" onclick="closeMenu()">Contact</a>
+  <div class="mobile-menu-btns">
+    <a href="login.html" class="btn-outline">Sign In</a>
+    <a href="signup.html" class="btn-solid">Sign up</a>
+  </div>
+</div>
+
+
+<div class="page">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-tag">
+      <div class="pulse"></div>
+      Meet the Team
+    </div>
+    <h1>Built by <span class="c1">Engineers,</span><br>For <span class="c2">Engineers.</span></h1>
+    <p class="hero-sub">
+      PowerEye Monitor was designed and developed by a dedicated team of 4 members —
+      combining frontend craft, backend power, IoT hardware expertise, and collaborative support
+      to bring real-time grid monitoring to life.
+    </p>
+  </section>
+
+  <!-- PROJECT OVERVIEW -->
+  <section class="section">
+    <div class="section-label">The Project</div>
+    <div class="section-title">What is PowerEye Monitor?</div>
+
+    <div class="project-grid">
+      <div class="project-card">
+        <div class="pc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#00c8ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+        </div>
+        <h3>Mission</h3>
+        <p>To provide electricity departments with a unified, real-time platform to monitor voltage levels across every pole in the grid — reducing outages, detecting faults instantly, and empowering field engineers with actionable data.</p>
+      </div>
+
+      <div class="project-card">
+        <div class="pc-icon g">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#00ff9d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <h3>How It Works</h3>
+        <p>IoT sensors attached to electricity poles transmit live voltage readings to our backend. The data is processed, stored, and visualised in a live dashboard — accessible securely by verified employees through email and employee ID login.</p>
+      </div>
+
+      <div class="project-card">
+        <div class="pc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#00c8ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h3>Core Goals</h3>
+        <p>Minimise manual pole inspections, enable rapid fault response, provide historical voltage analytics for infrastructure planning, and secure sensitive grid data behind role-based employee access control.</p>
+      </div>
+
+      <div class="project-card">
+        <div class="pc-icon g">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#00ff9d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+        <h3>Impact</h3>
+        <p>From real-time fault alerts to automated shift reports, PowerEye Monitor turns raw voltage data into decisions — helping grid operators prevent blackouts before they happen and maintain safer, more reliable infrastructure.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="section" style="padding-top:0;">
+    <div class="section-label">The People</div>
+    <div class="section-title">Our 4-Member Team</div>
+
+    <!-- LEADER -->
+    <div class="leader-wrap">
+      <div class="leader-card">
+        <!-- Avatar -->
+        <div class="avatar">
+          <div class="avatar-ring leader-ring">
+            <span class="avatar-initials leader-init">AA</span>
+          </div>
+          <div class="avatar-num gold">01</div>
+        </div>
+
+        <!-- Info -->
+        <div class="leader-info">
+          <div class="member-name leader-name">Aashish</div>
+          <div class="member-role role-leader">⚡ Team Leader &amp; Frontend Developer</div>
+          <p class="member-desc">
+            Aashish leads the PowerEye Monitor project, coordinating the team and driving the frontend development. As a frontend beginner, he embraces every challenge with curiosity and dedication — crafting the user interface that brings complex voltage data to life in an intuitive, accessible way. His leadership ensures the team stays aligned, focused, and moving forward.
+          </p>
+          <div class="mc-tags" style="margin-top:14px; justify-content:flex-start;">
+            <span class="tag tag-gold">Team Leader</span>
+            <span class="tag tag-cyan">HTML / CSS</span>
+            <span class="tag tag-cyan">JavaScript</span>
+            <span class="tag tag-cyan">UI Design</span>
+            <span class="tag tag-gold">Project Coordination</span>
+          </div>
+        </div>
+
+        <!-- Skills -->
+        <div class="leader-skills">
+          <div class="skill-item">
+            <div class="skill-label">HTML / CSS</div>
+            <div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-label">JavaScript</div>
+            <div class="skill-bar"><div class="skill-fill" style="width:60%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-label">Leadership</div>
+            <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-label">UI Design</div>
+            <div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MEMBERS GRID -->
+    <div class="members-grid">
+
+      <!-- Robin Singh -->
+      <div class="member-card mc-green">
+        <div class="mc-avatar-wrap">
+          <div class="mc-avatar green-av">
+            <span class="mc-initials green-t">RS</span>
+            <div class="mc-num green" style="background:var(--accent2);color:#000;">02</div>
+          </div>
+        </div>
+        <div class="mc-name">Robin Singh</div>
+        <div class="mc-role role-backend">Backend Developer</div>
+        <div class="mc-divider"></div>
+        <p class="mc-desc">
+          Robin engineers the server-side backbone of PowerEye Monitor. He builds the APIs, manages the database architecture, and ensures that live voltage data flows reliably from IoT sensors all the way to the dashboard. His backend systems handle authentication, data storage, and real-time processing.
+        </p>
+        <div class="mc-tags">
+          <span class="tag tag-green">Node.js</span>
+          <span class="tag tag-green">REST API</span>
+          <span class="tag tag-green">Database</span>
+          <span class="tag tag-green">Auth Systems</span>
+        </div>
+      </div>
+
+      <!-- Daksh Kumar -->
+      <div class="member-card mc-orange">
+        <div class="mc-avatar-wrap">
+          <div class="mc-avatar orange-av">
+            <span class="mc-initials orange-t">DK</span>
+            <div class="mc-num" style="background:var(--accent3);color:#fff;">03</div>
+          </div>
+        </div>
+        <div class="mc-name">Daksh Kumar</div>
+        <div class="mc-role role-iot">IoT Member</div>
+        <div class="mc-divider"></div>
+        <p class="mc-desc">
+          Daksh handles the physical intelligence of the project. He programs and deploys the IoT sensors attached to electricity poles, ensuring accurate voltage readings are captured and transmitted in real time. His hardware-software bridge is what makes PowerEye Monitor truly live.
+        </p>
+        <div class="mc-tags">
+          <span class="tag tag-orange">Arduino / ESP32</span>
+          <span class="tag tag-orange">Sensors</span>
+          <span class="tag tag-orange">Embedded C</span>
+          <span class="tag tag-orange">MQTT</span>
+        </div>
+      </div>
+
+      <!-- Yash Kumar -->
+      <div class="member-card mc-violet">
+        <div class="mc-avatar-wrap">
+          <div class="mc-avatar violet-av">
+            <span class="mc-initials violet-t">YK</span>
+            <div class="mc-num" style="background:var(--accent4);color:#fff;">04</div>
+          </div>
+        </div>
+        <div class="mc-name">Yash Kumar</div>
+        <div class="mc-role role-support">Supporting Member</div>
+        <div class="mc-divider"></div>
+        <p class="mc-desc">
+          Yash is the glue that keeps the project together. He supports testing, documentation, and quality assurance — making sure every feature works as expected before it ships. He also assists the team with research, content, and cross-domain troubleshooting whenever challenges arise.
+        </p>
+        <div class="mc-tags">
+          <span class="tag tag-violet">Testing & QA</span>
+          <span class="tag tag-violet">Documentation</span>
+          <span class="tag tag-violet">Research</span>
+          <span class="tag tag-violet">Team Support</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TECH STACK -->
+  <div class="tech-section">
+    <div class="section-label" style="text-align:center; margin-bottom:12px;">Technology Stack</div>
+    <div class="section-title" style="text-align:center; margin-bottom:32px;">Built With</div>
+
+    <div class="tech-grid">
+      <div class="tech-card" style="animation-delay:.05s">
+        <div class="tech-icon">⚡</div>
+        <div class="tech-name">ESP32 / Arduino</div>
+        <div class="tech-type">IoT Hardware</div>
+      </div>
+      <div class="tech-card" style="animation-delay:.1s">
+        <div class="tech-icon">🌐</div>
+        <div class="tech-name">HTML / CSS / JS</div>
+        <div class="tech-type">Frontend</div>
+      </div>
+      <div class="tech-card" style="animation-delay:.15s">
+        <div class="tech-icon">🖥️</div>
+        <div class="tech-name">Node.js</div>
+        <div class="tech-type">Backend Runtime</div>
+      </div>
+      <div class="tech-card" style="animation-delay:.2s">
+        <div class="tech-icon">🗄️</div>
+        <div class="tech-name">MongoDB</div>
+        <div class="tech-type">Database</div>
+      </div>
+      <div class="tech-card" style="animation-delay:.25s">
+        <div class="tech-icon">📡</div>
+        <div class="tech-name">MQTT Protocol</div>
+        <div class="tech-type">IoT Messaging</div>
+      </div>
+      <div class="tech-card" style="animation-delay:.3s">
+        <div class="tech-icon">🔌</div>
+        <div class="tech-name">REST API</div>
+        <div class="tech-type">Data Layer</div>
+      </div>
+      <div class="tech-card" style="animation-delay:.35s">
+        <div class="tech-icon">🔐</div>
+        <div class="tech-name">JWT Auth</div>
+        <div class="tech-type">Security</div>
+      </div>
+      <div class="tech-card" style="animation-delay:.4s">
+        <div class="tech-icon">📊</div>
+        <div class="tech-name">Chart.js</div>
+        <div class="tech-type">Visualisation</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+<!-- FOOTER -->
+<footer style="position:relative;z-index:1;">
+  <div class="footer-brand">POWEREYE MONITOR</div>
+  <div class="footer-copy">© 2026 PowerEye Monitor — Electricity Pole Voltage System</div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="login.html">Sign In</a>
+    <a href="signup.html">Register</a>
+  </div>
+</footer>
+
+</body>
+<script src="/frontend/js/about.js"></script>
+</html>
