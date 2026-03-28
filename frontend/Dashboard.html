@@ -76,5 +76,71 @@
       </div>
     </div>
   </nav>
+
+
+  <!-- ══════════════════════════════════════
+       MAIN CONTENT
+       ══════════════════════════════════════ -->
+  <main>
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+      <h1 class="page-title">Pole Monitoring</h1>
+      <p class="page-subtitle">8 poles registered</p>
+    </div>
+
+    <!-- FILTER BUTTONS -->
+    <div class="filter-bar" role="group" aria-label="Filter poles by status">
+      <button 
+        class="filter-btn f-all active" 
+        onclick="setFilter('all', this)"
+        aria-pressed="true"
+      >
+        All <span class="filter-count" id="fc-all">0</span>
+      </button>
+      <button 
+        class="filter-btn f-active" 
+        onclick="setFilter('active', this)"
+        aria-pressed="false"
+      >
+        <span style="width:7px;height:7px;border-radius:50%;background:var(--accent-green);display:inline-block;"></span>
+        Active <span class="filter-count" id="fc-active">0</span>
+      </button>
+      <button 
+        class="filter-btn f-warn" 
+        onclick="setFilter('warning', this)"
+        aria-pressed="false"
+      >
+        <span style="width:7px;height:7px;border-radius:50%;background:var(--accent-orange);display:inline-block;"></span>
+        Warning <span class="filter-count" id="fc-warn">0</span>
+      </button>
+      <button 
+        class="filter-btn f-fault" 
+        onclick="setFilter('error', this)"
+        aria-pressed="false"
+      >
+        <span style="width:7px;height:7px;border-radius:50%;background:var(--accent-red);display:inline-block;"></span>
+        Fault <span class="filter-count" id="fc-fault">0</span>
+      </button>
+    </div>
+
+    <!-- SEARCH BOX -->
+    <div class="search-box">
+      <input 
+        type="text" 
+        id="searchInput" 
+        placeholder="Search pole (ID, location, status)..."
+        onkeyup="filterPoles()"
+        aria-label="Search poles"
+      />
+    </div>
+
+    <!-- POLE LIST -->
+    <div class="pole-list" id="poleList" role="main" aria-live="polite" aria-label="List of poles">
+      <!-- Poles will be rendered here by JavaScript -->
+    </div>
+  </main>
+
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+  <script src="/Javascript/home.js"></script>
 </body>
 </html>
