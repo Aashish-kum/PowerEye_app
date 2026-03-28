@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add New Pole - VoltGrid</title>
+  <link rel="icon" type="image/jpg" href="/assets/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/frontend/style/add_pole.css">
+  
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <div class="nav-left">
+    <div class="nav-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#00c8ff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+      </svg>
+    </div>
+    <div class="nav-title">VOLTGRID</div>
+    <div class="nav-divider"></div>
+    <div class="nav-subtitle">Pole Management</div>
+  </div>
+
+  <div class="nav-right">
+    <div class="live-badge">
+      <div class="live-dot"></div>
+      <span>LIVE</span>
+    </div>
+  </div>
+</nav>
+
+<!-- Main Content -->
+<main>
+  <!-- Page Header -->
+  <div class="page-header">
+    <h1 class="page-title">
+      <div class="page-title-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
+      </div>
+      Add New Pole
+    </h1>
+    <p class="page-subtitle">Create a new pole monitoring station</p>
+  </div>
+
+  <!-- Alert Messages -->
+  <div class="alert alert-error" id="errorAlert">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"></circle>
+      <line x1="12" y1="8" x2="12" y2="12"></line>
+      <line x1="12" y1="16" x2="12.01" y2="16"></line>
+    </svg>
+    <span id="errorMessage"></span>
+  </div>
+
+  <div class="alert alert-success" id="successAlert">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+    <span>Pole created successfully! Redirecting...</span>
+  </div>
+
+  <!-- Form Container -->
+  <div class="form-container">
+    <!-- Info Box -->
+    <div class="info-box">
+      <strong>Note:</strong> All fields marked with <span class="required">*</span> are required. Ensure all information is accurate before submission.
+    </div>
+
+    <form id="poleForm" onsubmit="handleSubmit(event)">
+      <!-- Basic Information Section -->
+      <div class="form-section">
+        <h2 class="section-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 14px; height: 14px; display: inline; margin-right: 6px;">
+            <path d="M12 2v20M2 12h20"></path>
+          </svg>
+          Basic Information
+        </h2>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="poleId">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="9" y1="9" x2="15" y2="9"></line>
+                <line x1="9" y1="15" x2="15" y2="15"></line>
+              </svg>
+              Pole ID
+              <span class="required">*</span>
+            </label>
+            <input 
+              type="text" 
+              id="poleId" 
+              name="poleId"
+              placeholder="e.g., P0L-101"
+              required
+            />
+            <div class="error-message">Pole ID is required and must be unique</div>
+            <div class="input-help">Format: P0L-XXX (e.g., P0L-101, P0L-102)</div>
+          </div>
+
+          <div class="form-group">
+            <label for="location">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              Location
+              <span class="required">*</span>
+            </label>
+            <input 
+              type="text" 
+              id="location" 
+              name="location"
+              placeholder="e.g., Main St & 1st Ave"
+              required
+            />
+            <div class="error-message">Location is required</div>
+            <div class="input-help">Street address or intersection</div>
+          </div>
+        </div>
+
+        <div class="form-grid full">
+          <div class="form-group">
+            <label for="description">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+              Description
+            </label>
+            <textarea 
+              id="description" 
+              name="description"
+              placeholder="Additional notes about this pole..."
+            ></textarea>
+            <div class="input-help">Optional: Any additional information</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Technical Specifications Section -->
+      <div class="form-section">
+        <h2 class="section-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 14px; height: 14px; display: inline; margin-right: 6px;">
+            <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+            <rect x="9" y="9" width="6" height="6"></rect>
+          </svg>
+          Technical Specifications
+        </h2>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="poleType">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <polyline points="19 12 12 19 5 12"></polyline>
+              </svg>
+              Pole Type
+              <span class="required">*</span>
+            </label>
+            <select id="poleType" name="poleType" required>
+              <option value="">Select pole type</option>
+              <option value="Overhead">Overhead</option>
+              <option value="Underground">Underground</option>
+              <option value="Subsurface">Subsurface</option>
+            </select>
+            <div class="error-message">Pole type is required</div>
+          </div>
+
+          <div class="form-group">
+            <label for="phase">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 6v6l4 2"></path>
+              </svg>
+              Phase Type
+              <span class="required">*</span>
+            </label>
+            <select id="phase" name="phase" required>
+              <option value="">Select phase type</option>
+              <option value="Single Phase">Single Phase</option>
+              <option value="Three Phase">Three Phase</option>
+              <option value="DC">DC</option>
+            </select>
+            <div class="error-message">Phase type is required</div>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="voltage">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polyline>
+              </svg>
+              Expected Voltage (V)
+              <span class="required">*</span>
+            </label>
+            <input 
+              type="number" 
+              id="voltage" 
+              name="voltage"
+              placeholder="220"
+              step="0.1"
+              min="0"
+              required
+            />
+            <div class="error-message">Valid voltage is required</div>
+            <div class="input-help">Nominal voltage in volts</div>
+          </div>
+
+          <div class="form-group">
+            <label for="current">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+              </svg>
+              Expected Current (A)
+              <span class="required">*</span>
+            </label>
+            <input 
+              type="number" 
+              id="current" 
+              name="current"
+              placeholder="10"
+              step="0.1"
+              min="0"
+              required
+            />
+            <div class="error-message">Valid current is required</div>
+            <div class="input-help">Nominal current in amperes</div>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="power">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+              </svg>
+              Expected Power (W)
+              <span class="required">*</span>
+            </label>
+            <input 
+              type="number" 
+              id="power" 
+              name="power"
+              placeholder="2200"
+              step="0.1"
+              min="0"
+              required
+            />
+            <div class="error-message">Valid power is required</div>
+            <div class="input-help">Nominal power in watts</div>
+          </div>
+
+          <div class="form-group">
+            <label for="connections">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+              Number of Connections
+              <span class="required">*</span>
+            </label>
+            <input 
+              type="number" 
+              id="connections" 
+              name="connections"
+              placeholder="12"
+              min="0"
+              required
+            />
+            <div class="error-message">Number of connections is required</div>
+            <div class="input-help">Connected devices/loads</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Equipment Information Section -->
+      <div class="form-section">
+        <h2 class="section-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 14px; height: 14px; display: inline; margin-right: 6px;">
+            <circle cx="12" cy="12" r="1"></circle>
+            <path d="M12 1v6m0 6v6"></path>
+            <path d="M4.22 4.22h5.06m7.44 0h5.06"></path>
+            <path d="M1 12h6m7 0h6"></path>
+            <path d="M4.22 19.78h5.06m7.44 0h5.06"></path>
+          </svg>
+          Equipment Information
+        </h2>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="transformer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+                <rect x="9" y="9" width="6" height="6"></rect>
+              </svg>
+              Transformer ID
+              <span class="required">*</span>
+            </label>
+            <input 
+              type="text" 
+              id="transformer" 
+              name="transformer"
+              placeholder="e.g., TRF-101"
+              required
+            />
+            <div class="error-message">Transformer ID is required</div>
+            <div class="input-help">Transformer identification number</div>
+          </div>
+
+          <div class="form-group">
+            <label for="circuit">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 4h12v4H6z"></path>
+                <rect x="3" y="10" width="18" height="2"></rect>
+                <path d="M6 16h12v4H6z"></path>
+              </svg>
+              Circuit ID
+              <span class="required">*</span>
+            </label>
+            <input 
+              type="text" 
+              id="circuit" 
+              name="circuit"
+              placeholder="e.g., CKT-A12"
+              required
+            />
+            <div class="error-message">Circuit ID is required</div>
+            <div class="input-help">Circuit identification</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Maintenance Information Section -->
+      <div class="form-section">
+        <h2 class="section-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 14px; height: 14px; display: inline; margin-right: 6px;">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          Maintenance Information
+        </h2>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="installDate">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              Installation Date
+            </label>
+            <input 
+              type="date" 
+              id="installDate" 
+              name="installDate"
+            />
+            <div class="input-help">When the pole was installed</div>
+          </div>
+
+          <div class="form-group">
+            <label for="lastInspection">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              Last Inspection Date
+              <span class="required">*</span>
+            </label>
+            <input 
+              type="date" 
+              id="lastInspection" 
+              name="lastInspection"
+              required
+            />
+            <div class="error-message">Last inspection date is required</div>
+            <div class="input-help">Most recent inspection date</div>
+          </div>
+        </div>
+
+        <div class="form-grid full">
+          <div class="form-group">
+            <label for="maintenanceNotes">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+              </svg>
+              Maintenance Notes
+            </label>
+            <textarea 
+              id="maintenanceNotes" 
+              name="maintenanceNotes"
+              placeholder="Any known issues or maintenance requirements..."
+            ></textarea>
+            <div class="input-help">Optional: Known issues or planned maintenance</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Actions -->
+      <div class="button-group">
+        <button type="submit" class="btn btn-submit" id="submitBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span id="submitBtnText">Create Pole</span>
+        </button>
+        <button type="reset" class="btn btn-reset">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 4 23 10 17 10"></polyline>
+            <polyline points="1 20 1 14 7 14"></polyline>
+            <path d="M3.51 9a9 9 0 0 1 14.85-3.36M20.49 15a9 9 0 0 1-14.85 3.36"></path>
+          </svg>
+          <span>Reset</span>
+        </button>
+        <button type="button" class="btn btn-cancel" onclick="goBack()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+          <span>Cancel</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</main>
+
+<script src="/frontend/js/add_pole.js"></script>
+
+</body>
+</html>
