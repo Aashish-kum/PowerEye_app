@@ -1,4 +1,4 @@
-const socket = io("http://localhost:9000");
+const socket = io("http://10.98.59.72:9000");
 
 socket.onAny((event, data) => {
   console.log("📡 EVENT RECEIVED:", event, data);
@@ -30,7 +30,7 @@ updateClock();
 // Employee Id 
 //==============================
 const element = document.getElementById('employee-id');
-element.innerText = 'EMP-123456';
+element.innerText = 'hello';
 
 
 const poleIdMap = {
@@ -75,10 +75,14 @@ socket.on("baseline-update", (data) => {
   const pole = poles.find(p => p.id === mappedId);
   if (!pole) return;
 
+  // ✅ UPDATE EXPECTED VALUES
   pole.expectedCurrent = data.expected_current;
   pole.expectedVoltage = data.expected_voltage;
+
+  // optional: expected power
   pole.expectedPower = data.expected_current * data.expected_voltage;
 
+  // ✅ UPDATE UI
   updateBaselineUI(mappedId);
 });
 
@@ -169,7 +173,8 @@ const iconLayers = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" 
 const iconCalendar = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`;
 const iconCheck = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
 const iconChevron = `<svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>`;
-const iconEdit = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>`;
+const iconRefresh = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36M20.49 15a9 9 0 0 1-14.85 3.36"/></svg>`;
+const iconLogout = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>`;
 
 // ═══════════════════════════════════════
 //  FORMAT NUMBER
@@ -255,14 +260,6 @@ function renderPole(pole) {
           </div>
         </div>
       </div>
-
-      <!-- ── POLE ACTION BUTTONS ── -->
-      <div class="pole-actions">
-        <a href="/html/edit_pole.html?poleId=${encodeURIComponent(pole.id)}" class="btn-action btn-edit" title="Edit pole ${pole.id}" onclick="event.stopPropagation()">
-          ${iconEdit}
-          <span>Edit Pole</span>
-        </a>
-      </div>
     </div>
   </div>`;
 }
@@ -276,7 +273,7 @@ function renderAllPoles() {
   
   applyFilters();
   
-  const firstOpenPole = poles.find(p => p.open);
+  // const firstOpenPole = poles.find(p => p.open);
   if (firstOpenPole) {
     const card = document.querySelector(`.pole-card[data-id="${firstOpenPole.id}"]`);
     if (card) card.classList.add('open');
@@ -391,7 +388,9 @@ function refreshData() {
   refreshBtn.classList.add('refreshing');
   progressBar.classList.add('active');
   
+  // Simulate data refresh - replace with actual API call
   setTimeout(() => {
+    // Add small random variations to simulate fresh data
     poles.forEach(pole => {
       const variation = (Math.random() - 0.5) * 10;
       pole.currentPower = Math.max(100, pole.currentPower + variation);
@@ -399,21 +398,25 @@ function refreshData() {
       pole.currentCurrent = Math.max(1, pole.currentCurrent + (Math.random() - 0.5) * 0.5);
     });
     
+    // Update all cards with flash animation
     document.querySelectorAll('.pole-card').forEach((card, index) => {
       const pole = poles[index];
       if (pole) updateSinglePoleUI(pole.id);
     });
     
+    // Update timestamps
     const now = new Date();
     const time = `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
     lastRefreshTime = time;
     
+    // Update UI state
     refreshBtn.classList.remove('refreshing');
     refreshBtn.classList.add('done');
     progressBar.style.width = '100%';
     
     showToast('Data refreshed', time);
     
+    // Reset states
     setTimeout(() => {
       refreshBtn.classList.remove('done');
       progressBar.classList.remove('active');
@@ -428,14 +431,21 @@ function refreshData() {
 //  LOGOUT
 // ═══════════════════════════════════════
 function logout() {
+  // const confirmed = confirm('Are you sure you want to logout?');
+  // if (!confirmed) return;
+  
   isRefreshing = true;
   const body = document.body;
   body.style.opacity = '0.5';
   body.style.pointerEvents = 'none';
   
+  // Simulate logout process
   setTimeout(() => {
+    // Clear session/local storage
     localStorage.removeItem('authToken');
     sessionStorage.removeItem('userSession');
+    
+    // Redirect to login page (adjust URL as needed)
     window.location.href = '/frontend/logout.html';
   }, 600);
 }
@@ -477,6 +487,16 @@ function updateSinglePoleUI(pole_id) {
   setTimeout(() => card.classList.remove("flashing"), 600);
 }
 
+// ═══════════════════════════════════════
+//  INITIALIZATION
+// ═══════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  renderAllPoles();
+});
+
+
+
+
 function updateBaselineUI(pole_id) {
   const card = document.querySelector(`.pole-card[data-id="${pole_id}"]`);
   if (!card) return;
@@ -486,25 +506,21 @@ function updateBaselineUI(pole_id) {
 
   const cells = card.querySelectorAll('.metric-value');
 
+  // Expected Power (index 0)
   if (cells[0]) {
     cells[0].childNodes[0].textContent = fmt(pole.expectedPower);
     flashValue(cells[0]);
   }
 
+  // Expected Voltage (index 2)
   if (cells[2]) {
     cells[2].childNodes[0].textContent = fmt(pole.expectedVoltage);
     flashValue(cells[2]);
   }
 
+  // Expected Current (index 4)
   if (cells[4]) {
     cells[4].childNodes[0].textContent = fmt(pole.expectedCurrent);
     flashValue(cells[4]);
   }
 }
-
-// ═══════════════════════════════════════
-//  INITIALIZATION
-// ═══════════════════════════════════════
-document.addEventListener('DOMContentLoaded', () => {
-  renderAllPoles();
-});

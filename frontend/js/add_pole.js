@@ -21,6 +21,9 @@
     const formData = new FormData(document.getElementById('poleForm'));
     const poleData = Object.fromEntries(formData);
 
+
+    
+
     // Show loading state
     const submitBtn = document.getElementById('submitBtn');
     const submitBtnText = document.getElementById('submitBtnText');
@@ -37,7 +40,7 @@
 
         // Redirect after delay
         setTimeout(() => {
-          window.location.href = '/home.html?newPole=' + response.poleId;
+          window.location.href = 'Dashboard.html?newPole=' + response.poleId;
         }, 1500);
 
       } else {
@@ -124,33 +127,34 @@
    * Submit pole data to server
    */
   async function submitPoleData(poleData) {
-    // Simulate API call - replace with actual endpoint
     return new Promise((resolve) => {
       setTimeout(() => {
-        // Demo mode - always succeed
+        const poles = JSON.parse(localStorage.getItem('poles') || '[]');
+        
+        // Add default values for new pole
+        const newPole = {
+          ...poleData,
+          status: poleData.status ? poleData.status.toLowerCase() : 'active',
+          statusLabel: poleData.status || 'Active',
+          powerColor: 'green',
+          currentPower: 0,
+          currentVoltage: 0,
+          currentCurrent: 0,
+          expectedPower: parseFloat(poleData.power) || 0,
+          expectedVoltage: parseFloat(poleData.voltage) || 0,
+          expectedCurrent: parseFloat(poleData.current) || 0,
+          connections: parseInt(poleData.connections) || 0,
+          lastUpdate: 'Just now'
+        };
+
+        poles.push(newPole);
+        localStorage.setItem('poles', JSON.stringify(poles));
+
         resolve({
           success: true,
           poleId: poleData.poleId,
           message: 'Pole created successfully'
         });
-
-        // For real implementation:
-        /*
-        fetch('/api/poles', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + localStorage.getItem('authToken')
-          },
-          body: JSON.stringify(poleData)
-        })
-          .then(response => response.json())
-          .then(data => resolve(data))
-          .catch(error => {
-            console.error('Error:', error);
-            resolve({ success: false, message: 'Network error' });
-          });
-        */
       }, 1000);
     });
   }
